@@ -1,17 +1,20 @@
 package com.justa.emprestimos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Entity
-public class Arquivo {
+public class Arquivo implements Serializable {
 
 	private static final long serialVersionUID = -5769681022078964790L;
 
@@ -33,5 +36,9 @@ public class Arquivo {
 	private String ipRemoto;
 
 	private long tamanho;
+
+	@JsonIgnore
+	@ManyToOne
+	private Emprestimo emprestimo;
 
 }

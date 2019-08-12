@@ -1,8 +1,7 @@
 package com.justa.emprestimos.controllers;
 
 import com.justa.emprestimos.models.DTOs.UsuarioDTO;
-import com.justa.emprestimos.models.Usuario;
-import com.justa.emprestimos.services.UsuarioService;
+import com.justa.emprestimos.services.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,23 +13,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
-@Api(value = "Módulo de usuários")
+@Api(value = "Módulo de login")
 @RestController
-@RequestMapping(value = "/api/v1/usuario")
-public class UsuarioController {
+@RequestMapping(value = "/api/v1/login")
+public class LoginController {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private LoginService loginService;
 
     /**
-     * The purpose of this endpoint is to register a user
-     * @param usuario
-     * @return ResponseEntity<Usuario>
+     * Returns true if login is successful and false otherwise
+     * @param usuarioDTO
+     * @return ResponseEntity<Boolean>
      */
-    @ApiOperation(value = "Save a user", response = Usuario.class)
-    @PostMapping(value = "/register-user")
-    public ResponseEntity<Usuario> registerUser (UsuarioDTO usuario) {
-        return new ResponseEntity<>(usuarioService.registerUser(usuario), HttpStatus.OK);
+    @ApiOperation(value = "Login method", response = Boolean.class)
+    @PostMapping(value = "/login")
+    public ResponseEntity<Boolean> login (UsuarioDTO usuarioDTO) {
+        return new ResponseEntity<>(loginService.login(usuarioDTO), HttpStatus.OK);
     }
-
 }

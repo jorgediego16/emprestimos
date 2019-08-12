@@ -1,11 +1,16 @@
 package com.justa.emprestimos.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+@Getter
+@Setter
 @Entity
 @DiscriminatorValue("F")
 public class PessoaFisica extends Pessoa implements Serializable {
