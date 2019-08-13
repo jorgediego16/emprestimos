@@ -9,7 +9,7 @@ Para obter este projeto é necessário primeiramente cloná-lo em sua máquina e
 Para realizar a clonagem do projeto é necessário ter instalado o Git.
 Para executar o projeto é necessário ter instalado o java e o maven.
 
-<h1>Installing</h1>
+<h1>Instalando</h1>
 Após clonar o projeto, importe-o como um projeto Maven na IDE de sua preferência, espere o maven baixar as dependências necessárias, após isso basta executar, o projeto estará rodando na porta 3333. A documentação da API, bem como seus métodos poderão ser acessados em http://localhost:3333/swagger-ui.html
 
 Authors
