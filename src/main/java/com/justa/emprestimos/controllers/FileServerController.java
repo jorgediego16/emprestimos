@@ -1,5 +1,7 @@
 package com.justa.emprestimos.controllers;
 
+import com.justa.emprestimos.models.Arquivo;
+import com.justa.emprestimos.models.DTOs.FileUploadDTO;
 import com.justa.emprestimos.models.UploadFileResponse;
 import com.justa.emprestimos.services.FileStorageService;
 import io.swagger.annotations.ApiOperation;
@@ -8,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,8 +56,8 @@ public class FileServerController {
 	 */
 	@ApiOperation(value = "File Upload Method", response = UploadFileResponse.class)
 	@PostMapping("/uploadFile")
-	public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws Exception {
-		return fileStorageService.criaArquivo(file, request);
+	public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, HttpServletRequest request, @ModelAttribute FileUploadDTO fileUploadDTO) throws Exception {
+		return fileStorageService.uploadFile(file, request, fileUploadDTO);
 	}
 
 	/**
@@ -65,13 +68,13 @@ public class FileServerController {
 	 */
 	@ApiOperation(value = "Multiple File Upload Method", response = UploadFileResponse.class)
 	@PostMapping("/uploadMultipleFiles")
-	public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files, HttpServletRequest request) {
+	public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files, HttpServletRequest request, @RequestBody FileUploadDTO fileUploadDTO) {
 
 		List<Exception> exceptions = new ArrayList<>();
 
 		return Arrays.asList(files).stream().map(file -> {
 			try {
-				return uploadFile(file, request);
+				return uploadFile(file, request, fileUploadDTO);
 
 			} catch (Exception e) {
 				exceptions.add(e);
@@ -83,7 +86,7 @@ public class FileServerController {
 	}
 
 	/**
-	 * O objetivo deste método é realizar o download de um arquivo
+	 * The purpose of this method is to download a file
 	 * @param fileName
 	 * @param request
 	 * @return ResponseEntity<Resource>
@@ -131,6 +134,28 @@ public class FileServerController {
 			throw e;
 		}
 		return true;
+	}
+
+	/**
+	 * Returns a list of files according to loan id
+	 * @param idEmprestimo
+	 * @return ResponseEntity<List<Arquivo>>
+	 */
+	@ApiOperation(value = "File download method", response = Arquivo.class)
+	@GetMapping("/get-files-loan/{idEmprestimo}")
+	public ResponseEntity<List<Arquivo>> getFilesLoan (@PathVariable long idEmprestimo) {
+		return new ResponseEntity<>(fileStorageService.getFilesLoan(idEmprestimo), HttpStatus.OK);
+	}
+
+	/**
+	 * Returns a list of files according to user id
+	 * @param idUsuario
+	 * @return ResponseEntity<List<Arquivo>>
+	 */
+	@ApiOperation(value = "File download method", response = Arquivo.class)
+	@GetMapping("/get-files-user/{idUsuario}")
+	public ResponseEntity<List<Arquivo>> getFilesUer (@PathVariable long idUsuario) {
+		return new ResponseEntity<>(fileStorageService.getFilesUser(idUsuario), HttpStatus.OK);
 	}
 
 }

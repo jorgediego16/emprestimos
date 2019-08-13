@@ -2,34 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2f3c6e3-7320-4cbc-923f-0148f440e9b2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_1_6_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/config/EncryptConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/controllers/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/DTOs/UsuarioDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/Emprestimo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/enums/StatusCadastroUsuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/enums/StatusEmprestimo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/services/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/emprestimos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/emprestimos.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/controllers/EmprestimoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/controllers/PessoaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/DTOs/EmprestimoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/DTOs/FileUploadDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/DTOs/PessoaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/DTOs/PessoaFisicaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/DTOs/PessoaJuridicaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/repositories/EmprestimoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/repositories/PessoaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/services/EmprestimoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/services/PessoaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/controllers/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/controllers/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/controllers/FileServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/controllers/FileServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/controllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/Arquivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/Arquivo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/PessoaFisica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/PessoaFisica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/PessoaJuridica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/PessoaJuridica.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/repositories/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/repositories/UsuarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/services/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/services/UsuarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/controllers/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/controllers/UsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/repositories/ArquivoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/repositories/ArquivoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/services/FileStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/services/FileStorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/services/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/services/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/controllers/FileServerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/controllers/FileServerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/controllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/controllers/LoginController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/models/Arquivo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/models/Arquivo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/models/Pessoa.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/models/Pessoa.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/models/PessoaFisica.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/models/PessoaFisica.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/models/PessoaJuridica.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/models/PessoaJuridica.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/models/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/models/Usuario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/repositories/UsuarioRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/repositories/UsuarioRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/services/UsuarioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/services/UsuarioService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/services/FileStorageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/services/FileStorageService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/services/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/justa/emprestimos/services/LoginService.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,8 +48,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -90,6 +87,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/com/justa/emprestimos" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/DTOs" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -102,11 +100,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.justa.emprestimos.services" />
+      <recent name="com.justa.emprestimos.repositories" />
       <recent name="com.justa.emprestimos.config" />
       <recent name="com.justa.emprestimos.models" />
       <recent name="com.justa.emprestimos.exceptions" />
-      <recent name="com.justa.emprestimos.utils" />
-      <recent name="com.justa.emprestimos.properties" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/justa/emprestimos/models/DTOs" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -174,7 +175,8 @@
       <workItem from="1565354259269" duration="326000" />
       <workItem from="1565371133962" duration="7431000" />
       <workItem from="1565380602342" duration="3083000" />
-      <workItem from="1565607165842" duration="22148000" />
+      <workItem from="1565607165842" duration="22830000" />
+      <workItem from="1565717732282" duration="11552000" />
     </task>
     <servers />
   </component>

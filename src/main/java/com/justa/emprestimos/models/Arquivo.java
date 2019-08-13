@@ -41,4 +41,8 @@ public class Arquivo implements Serializable {
 	@ManyToOne
 	private Emprestimo emprestimo;
 
+	@JsonIgnore
+	@ManyToOne
+	private Usuario usuario;
+
 }

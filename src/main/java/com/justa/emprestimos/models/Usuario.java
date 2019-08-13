@@ -26,6 +26,10 @@ public class Usuario implements Serializable {
     private String password;
 
     @JsonIgnore
+    @ManyToOne
+    private Pessoa pessoa;
+
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     List<Arquivo> arquivosCadastro = new ArrayList<>();
 

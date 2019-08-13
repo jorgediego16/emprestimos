@@ -1,9 +1,12 @@
 package com.justa.emprestimos.services;
 
 import com.justa.emprestimos.models.Arquivo;
+import com.justa.emprestimos.models.DTOs.FileUploadDTO;
 import com.justa.emprestimos.models.UploadFileResponse;
 import com.justa.emprestimos.properties.FileStorageProperties;
 import com.justa.emprestimos.repositories.ArquivoRepository;
+import com.justa.emprestimos.repositories.EmprestimoRepository;
+import com.justa.emprestimos.repositories.UsuarioRepository;
 import com.justa.emprestimos.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -14,13 +17,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -33,6 +36,12 @@ public class FileStorageService {
 	private ArquivoRepository arquivoRepository;
 
 	@Autowired
+	private UsuarioRepository usuarioRepository;
+
+	@Autowired
+	private EmprestimoRepository emprestimoRepository;
+
+	@Autowired
 	public FileStorageService(FileStorageProperties fileStorageProperties) throws Exception {
 		this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir()).toAbsolutePath().normalize();
 
@@ -43,7 +52,15 @@ public class FileStorageService {
 		}
 	}
 
-	public UploadFileResponse criaArquivo(MultipartFile file, HttpServletRequest request) throws Exception {
+	/**
+	 * Upload a file
+	 * @param file
+	 * @param request
+	 * @param fileUploadDTO
+	 * @return UploadFileResponse
+	 * @throws Exception
+	 */
+	public UploadFileResponse uploadFile(MultipartFile file, HttpServletRequest request, FileUploadDTO fileUploadDTO) throws Exception {
 
 		// Generate UUID for file
 		String uuid = UUID.randomUUID().toString();
@@ -65,6 +82,8 @@ public class FileStorageService {
 		arquivo.setNomeOriginalArquivo(file.getOriginalFilename());
 		arquivo.setTamanho(file.getSize());
 		arquivo.setContentType(file.getContentType());
+		arquivo.setEmprestimo(fileUploadDTO.getIdEmprestimo() != null ? emprestimoRepository.findById(fileUploadDTO.getIdEmprestimo()).get() : null);
+		arquivo.setUsuario(fileUploadDTO.getUsername() != null ? usuarioRepository.getUser(fileUploadDTO.getUsername()) : null);
 
 		// Save file to disk
 		storeFile(file, arquivo.getNomeArquivo());
@@ -79,6 +98,13 @@ public class FileStorageService {
 				file.getSize());
 	}
 
+	/**
+	 * Formalize file name
+	 * @param file
+	 * @param nomeArquivo
+	 * @return String
+	 * @throws Exception
+	 */
 	public String storeFile(MultipartFile file, String nomeArquivo) throws Exception {
 
 		// Normaliza nome do arquivo
@@ -103,6 +129,12 @@ public class FileStorageService {
 		return fileName;
 	}
 
+	/**
+	 * Get file on disk
+	 * @param uuid
+	 * @return Resource
+	 * @throws Exception
+	 */
 	public Resource loadFileAsResource(String uuid) throws Exception {
 		try {
 			Path filePath = this.fileStorageLocation.resolve(uuid).normalize();
@@ -117,19 +149,43 @@ public class FileStorageService {
 		}
 	}
 
+	/**
+	 * Delete a file a disk
+	 * @param nomeArquivo
+	 * @throws IOException
+	 */
 	public void deletar(String nomeArquivo) throws IOException {
 		Files.delete(this.fileStorageLocation.resolve(nomeArquivo).normalize());
 	}
 
+	/**
+	 * Get file by name
+	 * @param fileName
+	 * @return Arquivo
+	 * @throws Exception
+	 */
 	public Arquivo obterArquivo(String fileName) throws Exception {
 		return arquivoRepository.findById(FileUtil.getFileNameWithoutExtension(fileName))
 				.orElseThrow(() -> new Exception("File not found " + fileName));
 	}
 
+	/**
+	 * Delete file from database
+	 * @param fileName
+	 * @throws Exception
+	 */
 	public void excluirArquivo(String fileName) throws Exception {
 		arquivoRepository.delete(obterArquivo(fileName));
 	}
 
+	/**
+	 * Update a file
+	 * @param file
+	 * @param uuid
+	 * @param request
+	 * @return boolean
+	 * @throws Exception
+	 */
 	public boolean updateFile(MultipartFile file, String uuid, HttpServletRequest request) throws Exception {
 
 		// obtem entidade arquivo
@@ -157,5 +213,23 @@ public class FileStorageService {
 		arquivoRepository.save(arquivo);
 
 		return true;
+	}
+
+	/**
+	 * Returns a list of files according to loan id
+	 * @param idEmprestimo
+	 * @return List<Arquivo>
+	 */
+	public List<Arquivo> getFilesLoan (Long idEmprestimo) {
+		return arquivoRepository.getFilesLoan(idEmprestimo);
+	}
+
+	/**
+	 * Returns a list of files according to user id
+	 * @param idUsuario
+	 * @return List<Arquivo>
+	 */
+	public List<Arquivo> getFilesUser (Long idUsuario) {
+		return arquivoRepository.getFilesLoan(idUsuario);
 	}
 }

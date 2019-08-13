@@ -21,11 +21,35 @@ public class LoginService {
      * @param usuarioDTO
      * @return Boolean
      */
-    public boolean login (UsuarioDTO usuarioDTO) {
+    public boolean login (UsuarioDTO usuarioDTO) throws Exception {
 
         Usuario usuario = usuarioRepository.getUser(usuarioDTO.getUsername());
 
+        if (usuario == null) {
+            throw new Exception("User not found");
+        }
+
         return passwordEncoder.matches(usuarioDTO.getPassword(), usuario.getPassword());
+    }
+
+    /**
+     * This method allows the user to recover their password
+     * @param username
+     * @param newPassword
+     * @return Usuario
+     * @throws Exception
+     */
+    public Usuario passwordRecovery (String username, String newPassword) throws Exception {
+
+        Usuario usuario = usuarioRepository.getUser(username);
+
+        if (usuario == null) {
+            throw new Exception("User not found");
+        }
+
+        usuario.setPassword(passwordEncoder.encode(newPassword));
+
+        return usuarioRepository.save(usuario);
     }
 
 }
