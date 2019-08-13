@@ -7,14 +7,10 @@ Para obter este projeto é necessário primeiramente cloná-lo em sua máquina e
 
 <h1>Pré-requisitos</h1>
 Para realizar a clonagem do projeto é necessário ter instalado o Git.
-Para executar o projeto é necessário ter instalado o sbt e o gradle.
+Para executar o projeto é necessário ter instalado o java e o maven.
 
-Give examples
-Installing
-A step by step series of examples that tell you how to get a development env running
-
-Versioning
-We use SemVer for versioning. For the versions available, see the tags on this repository.
+<h1>Installing</h1>
+Após clonar o projeto, importe-o como um projeto Maven na IDE de sua preferência, espere o maven baixar as dependências necessárias, após isso basta executar, o projeto estará rodando na porta 3333. A documentação da API, bem como seus métodos poderão ser acessados em http://localhost:3333/swagger-ui.html
 
 Authors
 Jorge Diego.
